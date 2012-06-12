@@ -1,13 +1,7 @@
 include_recipe 'python'
 
-package "libssl-dev" do
+python_pip "pyapns" do
   action :install
-end
-
-%w(python-epoll pyOpenSSL pyapns).each do |name|
-  python_pip name do
-    action :install
-  end
 end
 
 config       = node['pyapns']
