@@ -42,8 +42,9 @@ template "/etc/init/#{service_name}.conf" do
   group  "root"
   variables({
     :port  => config['port'],
-    :user  => config['user'],
-    :group => config['group']
+    :user  => user_name,
+    :group => group_name,
+    :home  => home_dir
   })
 end
 
