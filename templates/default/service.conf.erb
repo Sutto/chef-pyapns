@@ -1,0 +1,13 @@
+description "pyapns server"
+
+start on runlevel [23]
+stop on runlevel [01456]
+
+respawn
+respawn limit 10 5
+
+setuid <%= @user %>
+setgid <%= @group %>
+
+chdir /path/to/project/directory
+exec twistd --syslog -n -r epoll web --class=pyapns.server.APNSServer --port=<%= @port %>
