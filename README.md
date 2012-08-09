@@ -1,6 +1,6 @@
 # chef-pyapns
 
-This recipe simply installs and sets up a default running instance of [pyapns]() on
+This recipe simply installs and sets up a default running instance of [pyapns](https://github.com/samuraisam/pyapns/) on
 an ubuntu box.
 
 We use upstart in this recipe to manage the application recipe.
