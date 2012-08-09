@@ -28,7 +28,7 @@ directory home_dir do
   group     group_name
   recursive true
 end
- 
+
 template "/etc/init/#{service_name}.conf" do
   source "service.conf.erb"
   mode   "0644"
