@@ -1,6 +1,6 @@
 # chef-pyapns
 
-This recipe simply installs and sets up a default running instance of [pyapns](https://github.com/samuraisam/pyapns/) on
+This recipe installs and sets up a default running instance of [pyapns](https://github.com/samuraisam/pyapns/) on
 an ubuntu box.
 
 We use upstart in this recipe to manage the application recipe.
@@ -8,6 +8,9 @@ We use upstart in this recipe to manage the application recipe.
 ## Usage
 
 Simply add the `chef-pyapns` recipe to your application and then add `pyapns` to your runlist or include the recipe.
+
+We also optionally add a `pyapns_app` resource for things that will be autoprovisioned on configuration. This ties everything
+together to make it work as expected.
 
 ## Configuration
 
@@ -56,7 +59,26 @@ We expose the following options under `node['pyapns']`:
     <td>[]</td>
     <td>An array of hashes containing `app_id`, `cert` and `timeout` and `environment` - Used to generate the autoprovision tac file.</td>
   </tr>
+  <tr>
+    <td><code>apps_path</code></td>
+    <td>String</td>
+    <td>/etc/pyapns/apps</td>
+    <td>Directory to setup to hold PyAPNS application definitions. Each is a hash containing the same items as in apps, but as a JSON file.</td>
+  </tr>
 </table>
+
+## Resources
+
+To configure an app to be automatically provisioned on the server, use it roughly the same. This generates the appropriate JSON file in
+`node[:pyapns][:apps_path]`:
+
+```ruby
+pyapns_app 'app-id-goes-here' do
+  cert        'path-or-cert-contents'
+  timeout     30 # Defaults to 15
+  environment 'sandbox'
+end
+```
 
 ## Contributing
 
