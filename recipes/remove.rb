@@ -6,6 +6,7 @@ service_name = config['service_name']
 group_name = config['group']
 user_name  = config['user']
 home_dir   = config['home']
+apps_dir   = config['apps_path']
 
 
 service service_name do
@@ -22,11 +23,6 @@ python_pip "pyapns" do
   action :remove
 end
 
-group group_name do
-  system true
-  action :remove
-end
-
 user user_name do
   gid     group_name
   home    home_dir
@@ -36,7 +32,19 @@ user user_name do
   action :remove
 end
 
+group group_name do
+  system true
+  action :remove
+end
+
 directory home_dir do
+  owner     user_name
+  group     group_name
+  recursive true
+  action :delete
+end
+
+directory apps_dir do
   owner     user_name
   group     group_name
   recursive true
