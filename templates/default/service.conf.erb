@@ -10,4 +10,4 @@ setuid <%= @user %>
 setgid <%= @group %>
 
 chdir <%= @home %>
-exec twistd --syslog -n -r epoll web --class=pyapns.server.APNSServer --port=<%= @port %>
+exec twistd --syslog -n -r epoll -y <%= @tac_file %>

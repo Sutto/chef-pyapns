@@ -50,6 +50,12 @@ We expose the following options under `node['pyapns']`:
     <td>/var/lib/pyapns</td>
     <td>The directory to create and use as the home directory for the pyapns user. Also where the application is run from.</td>
   </tr>
+  <tr>
+    <td><code>apps</code></td>
+    <td>Array</td>
+    <td>[]</td>
+    <td>An array of hashes containing `app_id`, `cert` and `timeout` and `environment` - Used to generate the autoprovision tac file.</td>
+  </tr>
 </table>
 
 ## Contributing
